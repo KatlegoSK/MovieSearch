@@ -1,0 +1,93 @@
+
+	<div class="w3ls-weather">
+		
+		<h1>Movie Search</h1>
+		
+		 <form #form = "ngForm" (ngSubmit)= "onSearch(form)">
+			<div  class="input-group mb-3 searchBar">
+			 
+			  <input type="text" class="form-control" name="movieTitle" placeholder="Movie Title" aria-label="Movie Title" aria-describedby="basic-addon2" ngModel required>
+			  <div class="input-group-append">
+				<button [disabled]="!form.valid" class="btn btn-outline-secondary" type="submit">Search  </button>
+			  </div>
+			  <mat-progress-bar *ngIf="isWait" mode="indeterminate"></mat-progress-bar>
+			</div>
+			
+		</form>
+		
+		
+		
+		
+		
+		
+		<div *ngIf="hasFoundResults" class="w3ls-weather-agileinfo"> 
+		
+			<table class="table table-dark">
+			  <thead>
+			    <tr>
+				  <th scope="col">Results</th>
+				</tr>
+				<tr>
+				  <th scope="col">#</th>
+				  <th scope="col">Movie Tittle</th>
+				 
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr *ngFor="let movie of movies; let x = index">
+				  <th scope="row">{{x+1}}</th>
+				  <td (click)="onSelectTitle(movie)">{{movie.title}}</td>
+			
+				</tr>
+				
+			  </tbody>
+			</table>
+			
+			
+			<div class="clear"></div>
+				
+
+		</div> 
+
+     <div *ngIf="hasSelectedMovie" class="w3ls-weather-agileinfo"> 
+			<div class="weather-left">
+				<div class="weather-left-text">
+					<h4 >{{selectedMovie.title}} </h4>
+					
+					
+					<img src={{selectedMovie.poster_path}}>
+					<h5> <u>Overview</u> </h5>
+					<p style="color:white">{{selectedMovie.overview}}</p>
+				</div>
+				
+			</div>
+			<div class="weather-right">
+				<ul>
+					<li>
+						<figure class="icons">
+							<canvas id="partly-cloudy-day" width="60" height="60"></canvas>
+						</figure>
+						<h5 >Release Date</h5>
+						<h6 >{{selectedMovie.release_date}}</h6>
+						<div class="clear"></div>
+					</li>
+					
+					
+				</ul>
+				
+			</div>
+			<div class="clear"></div>
+					
+			
+		</div>  		
+		
+	
+		
+			
+			
+			
+		
+	</div>	
+    <div class="copyw3-agile">
+	<p>  Movie Search Portal by:  <a style="color: red" href="https://url222-url.firebaseapp.com" target="_blank">Katlego</a></p>
+	</div>
